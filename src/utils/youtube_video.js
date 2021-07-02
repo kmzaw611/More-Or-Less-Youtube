@@ -24,14 +24,13 @@ const getVideoIDFromTerm = async (term) => {
   return video.id.videoId;
 };
 
-const getVideoFromRandomWord = async () => {
+export const getVideoFromRandomWord = async () => {
   const term = generateRandomWord();
-  console.log(term);
   const videoID = getVideoIDFromTerm(term);
   return videoID;
 };
 
-const getVideoFromYoutuber = () => {
+export const getVideoFromYoutuber = () => {
   // A list of the top 50 most subscribed channels with some additions of my own.
   const youtubersList = [
     "T-Series",
@@ -90,6 +89,8 @@ const getVideoFromYoutuber = () => {
 
   // Get a random youtuber for the search term
   const term = youtubersList[Math.floor(Math.random() * youtubersList.length)];
+  console.log("YOUTUBER");
+  console.log(term);
   const videoID = getVideoIDFromTerm(term);
   return videoID;
 };
@@ -98,5 +99,3 @@ const getVideoFromGoogleSearch = () => {};
 
 // Randomly select one of the above three methods and use it to return a video.
 const getRandomVideo = () => {};
-
-export { getVideoFromRandomWord, getVideoFromYoutuber };

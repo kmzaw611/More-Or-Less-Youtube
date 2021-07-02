@@ -7,7 +7,7 @@ import {
 const App = () => {
   useEffect(() => {
     const getVideoID = async () => {
-      const videoID = await getVideoFromRandomWord();
+      const videoID = await getVideoFromYoutuber();
       console.log(videoID);
     };
 
