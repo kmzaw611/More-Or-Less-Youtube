@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
-import getVideoFromRandomWord from "../utils/youtube_video";
+import {
+  getVideoFromRandomWord,
+  getVideoFromYoutuber,
+} from "../utils/youtube_video";
 
 const App = () => {
   useEffect(() => {

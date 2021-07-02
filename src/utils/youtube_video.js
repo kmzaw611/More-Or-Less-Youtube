@@ -26,6 +26,7 @@ const getVideoIDFromTerm = async (term) => {
 
 const getVideoFromRandomWord = async () => {
   const term = generateRandomWord();
+  console.log(term);
   const videoID = getVideoIDFromTerm(term);
   return videoID;
 };
@@ -98,8 +99,4 @@ const getVideoFromGoogleSearch = () => {};
 // Randomly select one of the above three methods and use it to return a video.
 const getRandomVideo = () => {};
 
-const videoFunctions = {
-  getVideoFromRandomWord,
-  getVideoFromYoutuber,
-};
-export default videoFunctions;
+export { getVideoFromRandomWord, getVideoFromYoutuber };
