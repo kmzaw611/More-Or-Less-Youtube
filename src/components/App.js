@@ -1,14 +1,10 @@
 import React, { useEffect } from "react";
-import {
-  getVideoFromRandomWord,
-  getVideoFromYoutuber,
-  getVideoFromGoogleTrends,
-} from "../utils/youtube_video";
+import getRandomVideo from "../utils/youtube_video";
 
 const App = () => {
   useEffect(() => {
     const getVideoID = async () => {
-      const videoID = await getVideoFromGoogleTrends();
+      const videoID = await getRandomVideo();
       console.log(videoID);
     };
 

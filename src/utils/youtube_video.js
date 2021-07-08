@@ -26,24 +26,44 @@ const getVideoIDFromTerm = async (term) => {
   return video.id.videoId;
 };
 
-export const getVideoFromRandomWord = async () => {
+const getVideoFromRandomWord = async () => {
+  console.log("RANDOM_WORD");
   const term = generateRandomWord();
   const videoID = await getVideoIDFromTerm(term);
   return videoID;
 };
 
-export const getVideoFromYoutuber = async () => {
-  // Get a random youtuber for the search term
+const getVideoFromYoutuber = async () => {
+  console.log("YOUTUBER");
   const term = youtubersList[Math.floor(Math.random() * youtubersList.length)];
   const videoID = await getVideoIDFromTerm(term);
   return videoID;
 };
 
-export const getVideoFromGoogleTrends = async () => {
+const getVideoFromGoogleTrends = async () => {
+  console.log("GOOGLE_TRENDS");
   const term = googleTrends[Math.floor(Math.random() * googleTrends.length)];
   const videoID = await getVideoIDFromTerm(term);
   return videoID;
 };
 
 // Randomly select one of the above three methods and use it to return a video.
-export const getRandomVideo = () => {};
+const getRandomVideo = async () => {
+  const num = Math.floor(Math.random() * 3);
+  let videoID;
+  switch (num) {
+    case 0:
+      videoID = await getVideoFromRandomWord();
+      break;
+    case 1:
+      videoID = await getVideoFromYoutuber();
+      break;
+    case 2:
+      videoID = await getVideoFromGoogleTrends();
+      break;
+    default:
+  }
+  return videoID;
+};
+
+export default getRandomVideo;
