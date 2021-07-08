@@ -39,7 +39,11 @@ export const getVideoFromYoutuber = async () => {
   return videoID;
 };
 
-export const getVideoFromGoogleSearch = () => {};
+export const getVideoFromGoogleTrends = async () => {
+  const term = googleTrends[Math.floor(Math.random() * googleTrends.length)];
+  const videoID = await getVideoIDFromTerm(term);
+  return videoID;
+};
 
 // Randomly select one of the above three methods and use it to return a video.
 export const getRandomVideo = () => {};
