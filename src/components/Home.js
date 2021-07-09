@@ -14,35 +14,41 @@ const Home = () => {
   return (
     <Container textAlign="center" style={{ paddingTop: "50px" }}>
       <Image centered src={title} size="large" />
-      <Header as="h2" color="red" style={{ marginBottom: "30px" }}>
+
+      <Header
+        as="h2"
+        color="red"
+        style={{ marginBottom: "30px", fontFamily: "Montserrat" }}
+      >
         <Icon name="youtube play" />
         Which Youtube video has more views?
       </Header>
-      <Button
-        basic
-        circular
-        icon
-        size="large"
-        labelPosition="right"
-        color="pink"
-      >
-        <Icon name="chevron right" />
-        Classic Mode
+
+      <Button basic circular size="large" color="pink" animated>
+        <Button.Content icon visible>
+          Classic Mode
+          <Icon name="angle double right" />
+        </Button.Content>
+        <Button.Content icon hidden centered>
+          <Icon name="play" />
+        </Button.Content>
       </Button>
+
       <Divider />
-      <Button
-        basic
-        circular
-        icon
-        size="large"
-        labelPosition="right"
-        color="pink"
-      >
-        Time Trial Mode
-        <Icon name="chevron right " />
+
+      <Button basic circular size="large" color="pink" animated>
+        <Button.Content icon visible>
+          Time Trial Mode
+          <Icon name="angle double right" />
+        </Button.Content>
+        <Button.Content icon hidden centered>
+          <Icon name="clock" />
+        </Button.Content>
       </Button>
+
       <Divider />
-      <Button as="div" labelPosition="left" style={{ marginTop: "30px" }}>
+
+      <Button as="div" labelPosition="left" style={{ marginTop: "50px" }}>
         <Label basic color="red" pointing="right">
           Source Code
         </Label>
