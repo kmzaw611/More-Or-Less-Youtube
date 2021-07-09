@@ -8,6 +8,7 @@ import {
   Divider,
   Label,
 } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 import title from "../images/title.png";
 
 const Home = () => {
@@ -24,27 +25,31 @@ const Home = () => {
         Which Youtube video has more views?
       </Header>
 
-      <Button basic circular size="large" color="pink" animated>
-        <Button.Content icon visible>
-          Classic Mode
-          <Icon name="angle double right" />
-        </Button.Content>
-        <Button.Content icon hidden centered>
-          <Icon name="play" />
-        </Button.Content>
-      </Button>
+      <Link to="/game">
+        <Button basic circular size="large" color="pink" animated>
+          <Button.Content icon visible>
+            Classic Mode
+            <Icon name="angle double right" />
+          </Button.Content>
+          <Button.Content icon hidden centered>
+            <Icon name="play" />
+          </Button.Content>
+        </Button>
+      </Link>
 
       <Divider />
 
-      <Button basic circular size="large" color="pink" animated>
-        <Button.Content icon visible>
-          Time Trial Mode
-          <Icon name="angle double right" />
-        </Button.Content>
-        <Button.Content icon hidden centered>
-          <Icon name="clock" />
-        </Button.Content>
-      </Button>
+      <Link to="/game">
+        <Button basic circular size="large" color="pink" animated>
+          <Button.Content icon visible>
+            Time Trial Mode
+            <Icon name="angle double right" />
+          </Button.Content>
+          <Button.Content icon hidden centered>
+            <Icon name="clock" />
+          </Button.Content>
+        </Button>
+      </Link>
 
       <Divider />
 
