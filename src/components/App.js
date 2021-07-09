@@ -1,16 +1,6 @@
-import React, { useEffect } from "react";
-import getRandomVideo from "../utils/youtube_video";
+import React from "react";
 
 const App = () => {
-  useEffect(() => {
-    const getVideoID = async () => {
-      const videoID = await getRandomVideo();
-      console.log(videoID);
-    };
-
-    getVideoID();
-  }, []);
-
   return (
     <div>
       <h1>Above Or Below - Youtube</h1>
