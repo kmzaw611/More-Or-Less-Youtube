@@ -17,9 +17,9 @@ const Home = () => {
       <Image centered src={title} size="large" />
 
       <Header
-        as="h2"
+        as="h1"
         color="red"
-        style={{ marginBottom: "30px", fontFamily: "Montserrat" }}
+        style={{ marginBottom: "30px", fontFamily: "Zen Loop" }}
       >
         <Icon name="youtube play" />
         Which Youtube video has more views?
