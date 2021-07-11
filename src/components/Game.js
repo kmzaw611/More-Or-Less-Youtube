@@ -1,22 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import VideoCard from "./VideoCard";
-import { Grid, Container, Message, Segment, Divider } from "semantic-ui-react";
+import { Grid, Container, Segment, Divider } from "semantic-ui-react";
 
 const Game = () => {
   return (
     <Container fluid>
       <div className="background"></div>
-      <Segment
-        style={{
-          height: "93vh",
-          marginTop: 0,
-          marginBottom: 0,
-          display: "flex",
-          alignItems: "center",
-        }}
-        className="videocards"
-      >
+      <Segment id="videocards">
         <Grid columns={2}>
           <Divider vertical>VS</Divider>
           <Grid.Row>
@@ -39,16 +30,9 @@ const Game = () => {
           </Grid.Row>
         </Grid>
       </Segment>
-      <Segment
-        inverted
-        style={{ height: "7vh", marginTop: 0, borderRadius: 0 }}
-      >
-        <span style={{ fontWeight: "bold", fontSize: 20 }}>
-          Mode: Classic Mode
-        </span>
-        <span style={{ fontWeight: "bold", fontSize: 20, float: "right" }}>
-          Current Score: 0
-        </span>
+      <Segment inverted id="game-bottom-segment">
+        <span id="game-bottom-left-text">Mode: Classic Mode</span>
+        <span id="game-bottom-right-text">Current Score: 0</span>
       </Segment>
     </Container>
   );

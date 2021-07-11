@@ -13,14 +13,10 @@ import title from "../assets/images/title.png";
 
 const Home = () => {
   return (
-    <Container textAlign="center" style={{ paddingTop: "50px" }}>
+    <Container textAlign="center" id="home-container">
       <Image centered src={title} size="large" />
 
-      <Header
-        as="h1"
-        color="red"
-        style={{ marginBottom: "30px", fontFamily: "Zen Loop" }}
-      >
+      <Header as="h1" color="red" id="home-header">
         <Icon name="youtube play" />
         Which Youtube video has more views?
       </Header>
@@ -53,7 +49,7 @@ const Home = () => {
 
       <Divider />
 
-      <Button as="div" labelPosition="left" style={{ marginTop: "50px" }}>
+      <Button as="div" labelPosition="left" id="home-github">
         <Label basic color="red" pointing="right">
           Source Code
         </Label>
