@@ -7,17 +7,16 @@ const Game = () => {
   return (
     <Container fluid>
       <Segment
-        placeholder
         style={{
-          height: "90vh",
-          paddingTop: 50,
-          paddingBottom: 50,
+          height: "93vh",
           marginBottom: 0,
+          display: "flex",
+          alignItems: "center",
         }}
       >
-        <Grid columns={2} stackable textAlign="center">
+        <Grid columns={2}>
           <Divider vertical>VS</Divider>
-          <Grid.Row verticalAlign="middle">
+          <Grid.Row>
             <Grid.Column>
               <VideoCard
                 videoTitle='YOASOBI "Probably" Official Music Video'
@@ -32,17 +31,21 @@ const Game = () => {
                 videoID="8iuLXODzL04"
                 videoViews="35,707,214"
                 isQuestion={false}
-              />{" "}
+              />
             </Grid.Column>
           </Grid.Row>
         </Grid>
       </Segment>
       <Segment
         inverted
-        style={{ height: "10vh", marginTop: 0, borderRadius: 0 }}
+        style={{ height: "7vh", marginTop: 0, borderRadius: 0 }}
       >
-        <h3 style={{ float: "left" }}>Mode: Classic Mode</h3>
-        <h3 style={{ float: "right" }}>Current Score: 0</h3>
+        <span style={{ fontWeight: "bold", fontSize: 20 }}>
+          Mode: Classic Mode
+        </span>
+        <span style={{ fontWeight: "bold", fontSize: 20, float: "right" }}>
+          Current Score: 0
+        </span>
       </Segment>
     </Container>
   );
