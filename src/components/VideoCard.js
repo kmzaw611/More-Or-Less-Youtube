@@ -6,6 +6,7 @@ import {
   Header,
   Statistic,
 } from "semantic-ui-react";
+import IFrame from "./IFrame";
 
 const VideoCard = ({ videoTitle, videoID, videoViews, isQuestion }) => {
   let conditionalRender;
@@ -35,12 +36,15 @@ const VideoCard = ({ videoTitle, videoID, videoViews, isQuestion }) => {
       <Header as="h2" style={{ fontFamily: "Lato light" }}>
         {videoTitle}
       </Header>
-      <iframe
+
+      {/* <iframe
         width="512"
         height="288"
         src={`https://www.youtube.com/embed/${videoID}?controls=0`}
         title={videoTitle}
-      ></iframe>
+      ></iframe> */}
+
+      <IFrame videoID={videoID} videoTitle={videoTitle} />
 
       <Segment>
         <h3 style={{ fontFamily: "Merriweather" }}>This video has</h3>
