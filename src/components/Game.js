@@ -6,13 +6,16 @@ import { Grid, Container, Message, Segment, Divider } from "semantic-ui-react";
 const Game = () => {
   return (
     <Container fluid>
+      <div className="background"></div>
       <Segment
         style={{
           height: "93vh",
+          marginTop: 0,
           marginBottom: 0,
           display: "flex",
           alignItems: "center",
         }}
+        className="videocards"
       >
         <Grid columns={2}>
           <Divider vertical>VS</Divider>
