@@ -9,7 +9,7 @@ import {
   Label,
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import title from "../images/title.png";
+import title from "../assets/images/title.png";
 
 const Home = () => {
   return (

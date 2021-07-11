@@ -27,7 +27,7 @@ const VideoCard = ({ videoTitle, videoID, videoViews, isQuestion }) => {
 
   return (
     <Container textAlign="center">
-      <Header as="h3">{videoTitle}</Header>
+      <Header as="h2">{videoTitle}</Header>
       <iframe
         width="512"
         height="288"
