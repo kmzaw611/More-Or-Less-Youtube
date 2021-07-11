@@ -2,33 +2,23 @@ import React from "react";
 import {
   Button,
   Container,
-  Divider,
+  Segment,
   Header,
-  Icon,
-  Table,
+  Statistic,
 } from "semantic-ui-react";
 
 const VideoCard = ({ videoTitle, videoID, videoViews, isQuestion }) => {
   let conditionalRender;
 
   if (isQuestion) {
-    conditionalRender = (
-      <div>
-        <h3>This video has {videoViews} views.</h3>
-      </div>
-    );
+    conditionalRender = <Statistic label="Views" value={videoViews} />;
   } else {
     conditionalRender = (
       <div>
-        <h3>This video has</h3>
-        <Button.Group>
-          <Button positive size="large">
-            More
-          </Button>
+        <Button.Group size="huge">
+          <Button positive>More</Button>
           <Button.Or />
-          <Button negative size="large">
-            Less
-          </Button>
+          <Button negative>Less</Button>
         </Button.Group>
         <h3>views.</h3>
       </div>
@@ -45,7 +35,10 @@ const VideoCard = ({ videoTitle, videoID, videoViews, isQuestion }) => {
         title={videoTitle}
       ></iframe>
 
-      {conditionalRender}
+      <Segment>
+        <h3>This video has</h3>
+        {conditionalRender}
+      </Segment>
     </Container>
   );
 };
