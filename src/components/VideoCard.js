@@ -14,19 +14,19 @@ const VideoCard = ({ videoTitle, videoID, videoViews, isQuestion }) => {
   if (isQuestion) {
     conditionalRender = (
       <Statistic id="vidcard-viewcount">
-        <Statistic.Value>{videoViews}</Statistic.Value>
+        <Statistic.Value id="vidcard-value">{videoViews}</Statistic.Value>
         <Statistic.Label id="vidcard-text">VIEWS</Statistic.Label>
       </Statistic>
     );
   } else {
     conditionalRender = (
-      <div>
+      <div id="vidcard-buttons">
         <Button.Group fluid size="huge">
-          <Button basic positive>
+          <Button id="vidcard-button-positive" basic positive>
             More
           </Button>
           <Button.Or />
-          <Button basic negative>
+          <Button id="vidcard-button-negative" basic negative>
             Less
           </Button>
         </Button.Group>
@@ -43,7 +43,7 @@ const VideoCard = ({ videoTitle, videoID, videoViews, isQuestion }) => {
 
       <IFrame videoID={videoID} videoTitle={videoTitle} />
 
-      <Segment>
+      <Segment raised>
         <h3 id="vidcard-text">This video has</h3>
         {conditionalRender}
       </Segment>

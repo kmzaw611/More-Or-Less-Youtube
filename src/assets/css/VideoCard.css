@@ -3,11 +3,31 @@
 }
 
 #vidcard-text {
-  font-family: Merriweather;
-  font-size: 16px;
+  font-family: "Public Sans", sans-serif;
+  font-weight: 200;
+  font-size: 17px;
   margin-top: 10px;
+}
+
+#vidcard-value {
+  color: #b03060;
 }
 
 #vidcard-title {
   font-family: Lato light;
+}
+
+#vidcard-buttons {
+  margin-right: 100px;
+  margin-left: 100px;
+}
+
+#vidcard-button-positive:hover {
+  background-color: #016936 !important;
+  color: white !important;
+}
+
+#vidcard-button-negative:hover {
+  background-color: #b03060 !important;
+  color: white !important;
 }

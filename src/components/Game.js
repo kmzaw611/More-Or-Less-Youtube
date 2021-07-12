@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import VideoCard from "./VideoCard";
-import { Grid, Container, Segment, Divider } from "semantic-ui-react";
+import { Grid, Container, Segment, Divider, Button } from "semantic-ui-react";
 
 const Game = () => {
   return (
@@ -9,7 +9,9 @@ const Game = () => {
       <div className="background"></div>
       <Segment id="videocards">
         <Grid columns={2}>
-          <Divider vertical>VS</Divider>
+          <Divider vertical>
+            <span id="game-vs">VS</span>
+          </Divider>
           <Grid.Row>
             <Grid.Column>
               <VideoCard
