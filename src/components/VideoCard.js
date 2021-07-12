@@ -15,18 +15,22 @@ const VideoCard = ({ videoTitle, videoID, videoViews, isQuestion }) => {
     conditionalRender = (
       <Statistic style={{ marginTop: 0 }}>
         <Statistic.Value>{videoViews}</Statistic.Value>
-        <Statistic.Label>VIEWS</Statistic.Label>
+        <Statistic.Label id="vidcard-views">VIEWS</Statistic.Label>
       </Statistic>
     );
   } else {
     conditionalRender = (
       <div>
-        <Button.Group size="huge">
-          <Button positive>More</Button>
+        <Button.Group fluid size="huge">
+          <Button basic positive>
+            More
+          </Button>
           <Button.Or />
-          <Button negative>Less</Button>
+          <Button basic negative>
+            Less
+          </Button>
         </Button.Group>
-        <h4 style={{ marginTop: 5 }}>VIEWS</h4>
+        <h4 id="vidcard-views">VIEWS</h4>
       </div>
     );
   }
@@ -36,13 +40,6 @@ const VideoCard = ({ videoTitle, videoID, videoViews, isQuestion }) => {
       <Header as="h2" style={{ fontFamily: "Lato light" }}>
         {videoTitle}
       </Header>
-
-      {/* <iframe
-        width="512"
-        height="288"
-        src={`https://www.youtube.com/embed/${videoID}?controls=0`}
-        title={videoTitle}
-      ></iframe> */}
 
       <IFrame videoID={videoID} videoTitle={videoTitle} />
 
