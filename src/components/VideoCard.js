@@ -13,9 +13,9 @@ const VideoCard = ({ videoTitle, videoID, videoViews, isQuestion }) => {
 
   if (isQuestion) {
     conditionalRender = (
-      <Statistic style={{ marginTop: 0 }}>
+      <Statistic id="vidcard-viewcount">
         <Statistic.Value>{videoViews}</Statistic.Value>
-        <Statistic.Label id="vidcard-views">VIEWS</Statistic.Label>
+        <Statistic.Label id="vidcard-text">VIEWS</Statistic.Label>
       </Statistic>
     );
   } else {
@@ -30,21 +30,21 @@ const VideoCard = ({ videoTitle, videoID, videoViews, isQuestion }) => {
             Less
           </Button>
         </Button.Group>
-        <h4 id="vidcard-views">VIEWS</h4>
+        <h4 id="vidcard-text">VIEWS</h4>
       </div>
     );
   }
 
   return (
     <Container textAlign="center">
-      <Header as="h2" style={{ fontFamily: "Lato light" }}>
+      <Header as="h2" id="vidcard-title">
         {videoTitle}
       </Header>
 
       <IFrame videoID={videoID} videoTitle={videoTitle} />
 
       <Segment>
-        <h3 style={{ fontFamily: "Merriweather" }}>This video has</h3>
+        <h3 id="vidcard-text">This video has</h3>
         {conditionalRender}
       </Segment>
     </Container>
