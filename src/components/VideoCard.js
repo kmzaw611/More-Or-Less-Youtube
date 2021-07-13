@@ -8,7 +8,13 @@ import {
 } from "semantic-ui-react";
 import IFrame from "./IFrame";
 
-const VideoCard = ({ videoTitle, videoID, videoViews, isQuestion }) => {
+const VideoCard = ({
+  videoTitle,
+  videoID,
+  videoViews,
+  isQuestion,
+  onAnswerSubmit,
+}) => {
   const numberWithCommas = (num) => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
@@ -28,11 +34,21 @@ const VideoCard = ({ videoTitle, videoID, videoViews, isQuestion }) => {
     conditionalRender = (
       <div id="vidcard-buttons">
         <Button.Group fluid size="huge">
-          <Button id="vidcard-button-positive" basic positive>
+          <Button
+            onClick={() => onAnswerSubmit("more")}
+            id="vidcard-button-positive"
+            basic
+            positive
+          >
             More
           </Button>
           <Button.Or />
-          <Button id="vidcard-button-negative" basic negative>
+          <Button
+            onClick={() => onAnswerSubmit("less")}
+            id="vidcard-button-negative"
+            basic
+            negative
+          >
             Less
           </Button>
         </Button.Group>

@@ -14,6 +14,9 @@ const Game = () => {
   const [rightVidID, setRightVidID] = useState("");
 
   useEffect(() => {
+    // Called when the component first mounts.
+    // Loads the first two videos.
+
     const getVideoData = async () => {
       let firstVid = getRandomTestVideo();
       setLeftVidTitle(firstVid.videoTitle);
@@ -32,6 +35,24 @@ const Game = () => {
 
     getVideoData();
   }, []);
+
+  const onAnswerSubmit = (answer) => {
+    // answer is either 'more' or 'less'
+    // The choice is made within the VideoCard component.
+    if (answer === "more") {
+      if (leftVidViews > rightVidViews) {
+        console.log("Correct Answer!");
+      } else {
+        console.log("Wrong Answer!");
+      }
+    } else if (answer === "less") {
+      if (leftVidViews < rightVidViews) {
+        console.log("Correct Answer!");
+      } else {
+        console.log("Wrong Answer!");
+      }
+    }
+  };
 
   return (
     <Container fluid>
@@ -56,6 +77,7 @@ const Game = () => {
                 videoID={rightVidID}
                 videoViews={rightVidViews}
                 isQuestion={true}
+                onAnswerSubmit={onAnswerSubmit}
               />
             </Grid.Column>
           </Grid.Row>
