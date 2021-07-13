@@ -24,21 +24,18 @@ const getVideoIDFromTerm = async (term) => {
 };
 
 const getVideoFromRandomWord = async () => {
-  console.log("RANDOM_WORD");
   const term = generateRandomWord();
   const videoID = await getVideoIDFromTerm(term);
   return videoID;
 };
 
 const getVideoFromYoutuber = async () => {
-  console.log("YOUTUBER");
   const term = youtubersList[Math.floor(Math.random() * youtubersList.length)];
   const videoID = await getVideoIDFromTerm(term);
   return videoID;
 };
 
 const getVideoFromGoogleTrends = async () => {
-  console.log("GOOGLE_TRENDS");
   const term = googleTrends[Math.floor(Math.random() * googleTrends.length)];
   const videoID = await getVideoIDFromTerm(term);
   return videoID;
