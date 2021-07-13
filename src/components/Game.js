@@ -7,10 +7,10 @@ import getVideoInfo from "../utils/get_youtube_video_info";
 
 const Game = () => {
   const [leftVidTitle, setLeftVidTitle] = useState("");
-  const [leftVidViews, setLeftVidViews] = useState("");
+  const [leftVidViews, setLeftVidViews] = useState(0);
   const [leftVidID, setLeftVidID] = useState("");
   const [rightVidTitle, setRightVidTitle] = useState("");
-  const [rightVidViews, setRightVidViews] = useState("");
+  const [rightVidViews, setRightVidViews] = useState(0);
   const [rightVidID, setRightVidID] = useState("");
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const Game = () => {
       setLeftVidTitle(firstVid.videoTitle);
       setLeftVidID(firstVid.videoID);
       const firstVidInfo = await getVideoInfo(firstVid.videoID);
-      setLeftVidViews(firstVidInfo.items[0].statistics.viewCount);
+      setLeftVidViews(parseInt(firstVidInfo.items[0].statistics.viewCount));
 
       let secondVid = getRandomTestVideo();
       while (secondVid.videoID === firstVid.videoID)
@@ -30,26 +30,36 @@ const Game = () => {
       setRightVidTitle(secondVid.videoTitle);
       setRightVidID(secondVid.videoID);
       const secondVidInfo = await getVideoInfo(secondVid.videoID);
-      setRightVidViews(secondVidInfo.items[0].statistics.viewCount);
+      setRightVidViews(parseInt(secondVidInfo.items[0].statistics.viewCount));
     };
 
+    console.log("Refresh Time?");
     getVideoData();
   }, []);
+
+  const OnCorrectAnswerSubmit = () => {
+    console.log("Correct Answer!");
+  };
+
+  const OnWrongAnswerSubmit = () => {
+    console.log("Wrong Answer!");
+  };
 
   const onAnswerSubmit = (answer) => {
     // answer is either 'more' or 'less'
     // The choice is made within the VideoCard component.
+
     if (answer === "more") {
-      if (leftVidViews > rightVidViews) {
-        console.log("Correct Answer!");
+      if (rightVidViews > leftVidViews) {
+        OnCorrectAnswerSubmit();
       } else {
-        console.log("Wrong Answer!");
+        OnWrongAnswerSubmit();
       }
     } else if (answer === "less") {
-      if (leftVidViews < rightVidViews) {
-        console.log("Correct Answer!");
+      if (rightVidViews < leftVidViews) {
+        OnCorrectAnswerSubmit();
       } else {
-        console.log("Wrong Answer!");
+        OnWrongAnswerSubmit();
       }
     }
   };
