@@ -9,12 +9,18 @@ import {
 import IFrame from "./IFrame";
 
 const VideoCard = ({ videoTitle, videoID, videoViews, isQuestion }) => {
+  const numberWithCommas = (num) => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
   let conditionalRender;
 
   if (!isQuestion) {
     conditionalRender = (
       <Statistic id="vidcard-viewcount">
-        <Statistic.Value id="vidcard-value">{videoViews}</Statistic.Value>
+        <Statistic.Value id="vidcard-value">
+          {numberWithCommas(videoViews)}
+        </Statistic.Value>
         <Statistic.Label id="vidcard-text">VIEWS</Statistic.Label>
       </Statistic>
     );

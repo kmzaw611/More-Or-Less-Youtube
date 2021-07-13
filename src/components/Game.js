@@ -7,10 +7,10 @@ import getVideoInfo from "../utils/get_youtube_video_info";
 
 const Game = () => {
   const [leftVidTitle, setLeftVidTitle] = useState("");
-  const [leftVidViews, setLeftVidViews] = useState(0);
+  const [leftVidViews, setLeftVidViews] = useState("");
   const [leftVidID, setLeftVidID] = useState("");
   const [rightVidTitle, setRightVidTitle] = useState("");
-  const [rightVidViews, setRightVidViews] = useState(0);
+  const [rightVidViews, setRightVidViews] = useState("");
   const [rightVidID, setRightVidID] = useState("");
 
   useEffect(() => {
