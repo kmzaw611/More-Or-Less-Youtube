@@ -11,7 +11,7 @@ import IFrame from "./IFrame";
 const VideoCard = ({ videoTitle, videoID, videoViews, isQuestion }) => {
   let conditionalRender;
 
-  if (isQuestion) {
+  if (!isQuestion) {
     conditionalRender = (
       <Statistic id="vidcard-viewcount">
         <Statistic.Value id="vidcard-value">{videoViews}</Statistic.Value>

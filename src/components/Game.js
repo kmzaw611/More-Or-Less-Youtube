@@ -1,9 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import VideoCard from "./VideoCard";
-import { Grid, Container, Segment, Divider, Button } from "semantic-ui-react";
+import { Grid, Container, Segment, Divider } from "semantic-ui-react";
+import getRandomTestVideo from "../utils/data/test_data";
 
 const Game = () => {
+  const [leftVidTitle, setLeftVidTitle] = useState("");
+  const [leftVidViews, setLeftVidViews] = useState(0);
+  const [leftVidID, setLeftVidID] = useState("");
+  const [rightVidTitle, setRightVidTitle] = useState("");
+  const [rightVidViews, setRightVidViews] = useState(0);
+  const [rightVidID, setRightVidID] = useState("");
+
+  useEffect(() => {
+    const getVideoData = async () => {
+      let firstVid = getRandomTestVideo();
+      setLeftVidTitle(firstVid.videoTitle);
+      setLeftVidID(firstVid.videoID);
+
+      let secondVid = getRandomTestVideo();
+      while (secondVid.videoID === firstVid.videoID)
+        secondVid = getRandomTestVideo();
+      setRightVidTitle(secondVid.videoTitle);
+      setRightVidID(secondVid.videoID);
+    };
+
+    getVideoData();
+  }, []);
+
   return (
     <Container fluid>
       <div className="background"></div>
@@ -15,18 +39,18 @@ const Game = () => {
           <Grid.Row>
             <Grid.Column>
               <VideoCard
-                videoTitle='YOASOBI "Probably" Official Music Video'
-                videoID="8iuLXODzL04"
-                videoViews="35,707,214"
-                isQuestion={true}
+                videoTitle={leftVidTitle}
+                videoID={leftVidID}
+                videoViews={leftVidViews}
+                isQuestion={false}
               />
             </Grid.Column>
             <Grid.Column>
               <VideoCard
-                videoTitle='YOASOBI "Probably" Official Music Video'
-                videoID="8iuLXODzL04"
-                videoViews="35,707,214"
-                isQuestion={false}
+                videoTitle={rightVidTitle}
+                videoID={rightVidID}
+                videoViews={rightVidViews}
+                isQuestion={true}
               />
             </Grid.Column>
           </Grid.Row>

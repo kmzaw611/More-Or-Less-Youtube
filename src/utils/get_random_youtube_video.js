@@ -1,5 +1,5 @@
-import youtube from "../api/youtube";
-import generateRandomWord from "./random";
+import youtube_search from "../api/youtube_search";
+import generateRandomWord from "./data/random_word";
 import youtubersList from "./data/youtubers_list";
 import googleTrends from "./data/google_trends";
 
@@ -10,14 +10,11 @@ import googleTrends from "./data/google_trends";
 // All functions return a videoID that will later be rendered in React components.
 
 const getVideoIDFromTerm = async (term) => {
-  const { data } = await youtube.get(
-    "https://youtube.googleapis.com/youtube/v3/search",
-    {
-      params: {
-        q: term,
-      },
-    }
-  );
+  const { data } = await youtube_search.get("", {
+    params: {
+      q: term,
+    },
+  });
 
   // Pick a random video from the search results
   const videos = data.items;
