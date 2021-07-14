@@ -12,6 +12,9 @@ const Game = () => {
   const [rightVidTitle, setRightVidTitle] = useState("");
   const [rightVidViews, setRightVidViews] = useState(0);
   const [rightVidID, setRightVidID] = useState("");
+  // '' for normal, 'co' for correct answers and 'wr' for wrong answers
+  const [dividerClass, setDividerClass] = useState("");
+  const [dividerText, setDividerText] = useState("VS");
 
   useEffect(() => {
     // Called when the component first mounts.
@@ -38,11 +41,25 @@ const Game = () => {
   }, []);
 
   const OnCorrectAnswerSubmit = () => {
-    console.log("Correct Answer!");
+    // THINGS THAT NEED TO HAPPEN
+    // (0) Some sort of correct signal
+    // (1) The right vid transitions to the left side of the page
+    // (2) Left vid becomes right vid
+    // (3) New right vid is generated and transitioned in from the right side of the page
+    // (4) Score update
+    setDividerClass("co");
+    setDividerText("Correct!");
+
+    // setDividerClass("");
+    // setDividerText("VS");
   };
 
   const OnWrongAnswerSubmit = () => {
-    console.log("Wrong Answer!");
+    setDividerClass("wr");
+    setDividerText("Wrong!");
+
+    // setDividerClass("");
+    // setDividerText("VS");
   };
 
   const onAnswerSubmit = (answer) => {
@@ -70,7 +87,9 @@ const Game = () => {
       <Segment id="videocards">
         <Grid columns={2}>
           <Divider vertical>
-            <span id="game-vs">VS</span>
+            <span className={dividerClass} id="game-vs">
+              {dividerText}
+            </span>
           </Divider>
           <Grid.Row>
             <Grid.Column>
