@@ -18,24 +18,6 @@
   transition-duration: 1s;
 }
 
-#game-vs.co {
-  background-color: #016936;
-  font-size: 20px !important;
-  color: white;
-  border: 0px;
-  border-radius: 50%;
-  padding: 25px;
-}
-
-#game-vs.wr {
-  background-color: #b03060;
-  font-size: 20px !important;
-  color: white;
-  border: 0px;
-  border-radius: 50%;
-  padding: 25px;
-}
-
 #game-bottom-segment {
   height: 7vh;
   margin-top: 0;

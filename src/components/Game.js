@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import VideoCard from "./VideoCard";
 import { Grid, Container, Segment, Divider } from "semantic-ui-react";
 import getRandomTestVideo from "../utils/data/test_data";
 import getVideoInfo from "../utils/get_youtube_video_info";
 
 const Game = () => {
+  const [isQuestion, setIsQuestion] = useState(true);
   const [leftVidTitle, setLeftVidTitle] = useState("");
   const [leftVidViews, setLeftVidViews] = useState(0);
   const [leftVidID, setLeftVidID] = useState("");
   const [rightVidTitle, setRightVidTitle] = useState("");
   const [rightVidViews, setRightVidViews] = useState(0);
   const [rightVidID, setRightVidID] = useState("");
-  // '' for normal, 'co' for correct answers and 'wr' for wrong answers
-  const [dividerClass, setDividerClass] = useState("");
-  const [dividerText, setDividerText] = useState("VS");
 
   useEffect(() => {
     // Called when the component first mounts.
@@ -36,31 +33,21 @@ const Game = () => {
       setRightVidViews(parseInt(secondVidInfo.items[0].statistics.viewCount));
     };
 
-    console.log("Refresh Time?");
     getVideoData();
   }, []);
 
-  const OnCorrectAnswerSubmit = () => {
+  const OnCorrectAnswerSubmit = async () => {
     // THINGS THAT NEED TO HAPPEN
     // (0) Some sort of correct signal
     // (1) The right vid transitions to the left side of the page
     // (2) Left vid becomes right vid
     // (3) New right vid is generated and transitioned in from the right side of the page
     // (4) Score update
-    setDividerClass("co");
-    setDividerText("Correct!");
 
-    // setDividerClass("");
-    // setDividerText("VS");
+    setIsQuestion(false);
   };
 
-  const OnWrongAnswerSubmit = () => {
-    setDividerClass("wr");
-    setDividerText("Wrong!");
-
-    // setDividerClass("");
-    // setDividerText("VS");
-  };
+  const OnWrongAnswerSubmit = () => {};
 
   const onAnswerSubmit = (answer) => {
     // answer is either 'more' or 'less'
@@ -87,9 +74,7 @@ const Game = () => {
       <Segment id="videocards">
         <Grid columns={2}>
           <Divider vertical>
-            <span className={dividerClass} id="game-vs">
-              {dividerText}
-            </span>
+            <span id="game-vs">VS</span>
           </Divider>
           <Grid.Row>
             <Grid.Column>
@@ -105,7 +90,7 @@ const Game = () => {
                 videoTitle={rightVidTitle}
                 videoID={rightVidID}
                 videoViews={rightVidViews}
-                isQuestion={true}
+                isQuestion={isQuestion}
                 onAnswerSubmit={onAnswerSubmit}
               />
             </Grid.Column>

@@ -6,6 +6,7 @@ import {
   Header,
   Statistic,
 } from "semantic-ui-react";
+import CountUp from "react-countup";
 import IFrame from "./IFrame";
 
 const VideoCard = ({
@@ -25,7 +26,13 @@ const VideoCard = ({
     conditionalRender = (
       <Statistic id="vidcard-viewcount">
         <Statistic.Value id="vidcard-value">
-          {numberWithCommas(videoViews)}
+          <CountUp
+            end={videoViews}
+            duration={2}
+            formattingFn={numberWithCommas}
+            useEasing={true}
+          />
+          {/* {numberWithCommas(videoViews)} */}
         </Statistic.Value>
         <Statistic.Label id="vidcard-text">VIEWS</Statistic.Label>
       </Statistic>
