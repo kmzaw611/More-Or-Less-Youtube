@@ -6,6 +6,8 @@ import {
   Segment,
   Divider,
   Transition,
+  Dimmer,
+  Loader,
 } from "semantic-ui-react";
 import getRandomTestVideo from "../utils/data/test_data";
 import getVideoInfo from "../utils/get_youtube_video_info";
@@ -22,6 +24,7 @@ const Game = () => {
   const [visibleScore, setVisibleScore] = useState(true);
   const [result, setResult] = useState("");
   const [visibleResult, setVisibleResult] = useState(false);
+  const [dimmerActive, setDimmerActive] = useState(false);
 
   // This async function gets two random videos from the database for every new round
   // and updates state values appropriately to update the web page.
@@ -59,10 +62,15 @@ const Game = () => {
 
     setTimeout(() => {
       // Load two new videos
-      getVideoData();
       setIsQuestion(true);
       setVisibleResult(false);
+      setDimmerActive(true);
+      getVideoData();
     }, 2000);
+
+    setTimeout(() => {
+      setDimmerActive(false);
+    }, 3000);
   };
 
   const OnWrongAnswerSubmit = () => {};
@@ -89,7 +97,7 @@ const Game = () => {
   return (
     <Container fluid>
       <div className="background"></div>
-      <Segment id="videocards">
+      <Dimmer.Dimmable blurring as={Segment} id="videocards">
         <Grid columns={2}>
           <Divider vertical>
             <span id="game-vs">VS</span>
@@ -114,7 +122,11 @@ const Game = () => {
             </Grid.Column>
           </Grid.Row>
         </Grid>
-      </Segment>
+
+        <Dimmer active={dimmerActive}>
+          <Loader size="large">Loading Videos</Loader>
+        </Dimmer>
+      </Dimmer.Dimmable>
       <Segment inverted id="game-bottom-segment">
         <span id="game-bottom-left-text">Mode: Classic Mode</span>
 
