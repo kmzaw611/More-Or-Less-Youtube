@@ -1,17 +1,25 @@
 import React, { useState, useEffect } from "react";
 import VideoCard from "./VideoCard";
-import { Grid, Container, Segment, Divider } from "semantic-ui-react";
+import {
+  Grid,
+  Container,
+  Segment,
+  Divider,
+  Transition,
+} from "semantic-ui-react";
 import getRandomTestVideo from "../utils/data/test_data";
 import getVideoInfo from "../utils/get_youtube_video_info";
 
 const Game = () => {
-  const [isQuestion, setIsQuestion] = useState(true);
   const [leftVidTitle, setLeftVidTitle] = useState("");
   const [leftVidViews, setLeftVidViews] = useState(0);
   const [leftVidID, setLeftVidID] = useState("");
   const [rightVidTitle, setRightVidTitle] = useState("");
   const [rightVidViews, setRightVidViews] = useState(0);
   const [rightVidID, setRightVidID] = useState("");
+  const [isQuestion, setIsQuestion] = useState(true);
+  const [score, setScore] = useState(0);
+  const [visibleScore, setVisibleScore] = useState(true);
 
   useEffect(() => {
     // Called when the component first mounts.
@@ -43,7 +51,8 @@ const Game = () => {
     // (2) Left vid becomes right vid
     // (3) New right vid is generated and transitioned in from the right side of the page
     // (4) Score update
-
+    setScore(score + 1);
+    setVisibleScore(!visibleScore);
     setIsQuestion(false);
   };
 
@@ -99,7 +108,9 @@ const Game = () => {
       </Segment>
       <Segment inverted id="game-bottom-segment">
         <span id="game-bottom-left-text">Mode: Classic Mode</span>
-        <span id="game-bottom-right-text">Current Score: 0</span>
+        <Transition animation="bounce" duration={500} visible={visibleScore}>
+          <span id="game-bottom-right-text">Current Score: {score}</span>
+        </Transition>
       </Segment>
     </Container>
   );
