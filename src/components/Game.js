@@ -20,40 +20,49 @@ const Game = () => {
   const [isQuestion, setIsQuestion] = useState(true);
   const [score, setScore] = useState(0);
   const [visibleScore, setVisibleScore] = useState(true);
+  const [result, setResult] = useState("");
+  const [visibleResult, setVisibleResult] = useState(false);
+
+  // This async function gets two random videos from the database for every new round
+  // and updates state values appropriately to update the web page.
+  const getVideoData = async () => {
+    let firstVid = getRandomTestVideo();
+    setLeftVidTitle(firstVid.videoTitle);
+    setLeftVidID(firstVid.videoID);
+    const firstVidInfo = await getVideoInfo(firstVid.videoID);
+    setLeftVidViews(parseInt(firstVidInfo.items[0].statistics.viewCount));
+
+    let secondVid = getRandomTestVideo();
+    while (secondVid.videoID === firstVid.videoID)
+      secondVid = getRandomTestVideo();
+    setRightVidTitle(secondVid.videoTitle);
+    setRightVidID(secondVid.videoID);
+    const secondVidInfo = await getVideoInfo(secondVid.videoID);
+    setRightVidViews(parseInt(secondVidInfo.items[0].statistics.viewCount));
+  };
 
   useEffect(() => {
     // Called when the component first mounts.
     // Loads the first two videos.
-
-    const getVideoData = async () => {
-      let firstVid = getRandomTestVideo();
-      setLeftVidTitle(firstVid.videoTitle);
-      setLeftVidID(firstVid.videoID);
-      const firstVidInfo = await getVideoInfo(firstVid.videoID);
-      setLeftVidViews(parseInt(firstVidInfo.items[0].statistics.viewCount));
-
-      let secondVid = getRandomTestVideo();
-      while (secondVid.videoID === firstVid.videoID)
-        secondVid = getRandomTestVideo();
-      setRightVidTitle(secondVid.videoTitle);
-      setRightVidID(secondVid.videoID);
-      const secondVidInfo = await getVideoInfo(secondVid.videoID);
-      setRightVidViews(parseInt(secondVidInfo.items[0].statistics.viewCount));
-    };
-
     getVideoData();
   }, []);
 
   const OnCorrectAnswerSubmit = async () => {
-    // THINGS THAT NEED TO HAPPEN
-    // (0) Some sort of correct signal
-    // (1) The right vid transitions to the left side of the page
-    // (2) Left vid becomes right vid
-    // (3) New right vid is generated and transitioned in from the right side of the page
-    // (4) Score update
-    setScore(score + 1);
-    setVisibleScore(!visibleScore);
     setIsQuestion(false);
+    // Animation time for view count number
+    setTimeout(() => {
+      setResult("Correct!");
+      setVisibleResult(true);
+      setScore(score + 1);
+      setVisibleScore(!visibleScore);
+    }, 1000);
+
+    setTimeout(() => {
+      // Load two new videos
+      getVideoData();
+      setIsQuestion(true);
+      setVisibleResult(false);
+    }, 2000);
   };
 
   const OnWrongAnswerSubmit = () => {};
@@ -108,6 +117,11 @@ const Game = () => {
       </Segment>
       <Segment inverted id="game-bottom-segment">
         <span id="game-bottom-left-text">Mode: Classic Mode</span>
+
+        {visibleResult ? (
+          <span id="game-bottom-center-text">{result}</span>
+        ) : null}
+
         <Transition animation="bounce" duration={500} visible={visibleScore}>
           <span id="game-bottom-right-text">Current Score: {score}</span>
         </Transition>

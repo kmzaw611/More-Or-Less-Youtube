@@ -28,7 +28,7 @@ const VideoCard = ({
         <Statistic.Value id="vidcard-value">
           <CountUp
             end={videoViews}
-            duration={2}
+            duration={1}
             formattingFn={numberWithCommas}
             useEasing={true}
           />
