@@ -31,9 +31,9 @@ const Game = () => {
   const [gameOver, setGameOver] = useState(false);
 
   const correct_se = new Audio(correct_audio);
-  correct_se.volume = 0.2;
+  correct_se.volume = 0.3;
   const wrong_se = new Audio(wrong_audio);
-  wrong_se.volume = 0.2;
+  wrong_se.volume = 0.3;
 
   // This async function gets two random videos from the database for every new round
   // and updates state values appropriately to update the web page.

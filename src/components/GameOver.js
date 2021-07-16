@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 const GameOver = (props) => {
   let conditionalScoreRender;
+  let bgClass;
   let score = props.location.state.score || 0;
 
   if (score < 5) {
@@ -13,32 +14,41 @@ const GameOver = (props) => {
         try.
       </Message>
     );
+    bgClass = "gover-bg-bad";
   } else if (score > 5 && score < 10) {
     conditionalScoreRender = (
       <Message id="gover-message">
-        That was a good attempt. Pretty average. Perhaps you could do better.
+        That was a pretty good attempt. Perhaps you could do better. Make the
+        doggo proud.
       </Message>
     );
+    bgClass = "gover-bg-avg";
   } else {
     conditionalScoreRender = (
       <Message id="gover-message">
         Woah...you rock! That's an excellent score. Hope you had fun playing!
       </Message>
     );
+    bgClass = "gover-bg-gud";
   }
 
   return (
-    <Container id="gover-container" textAlign="center">
+    <Container
+      fluid
+      className={bgClass}
+      id="gover-container"
+      textAlign="center"
+    >
       <Header id="gover-header">You scored:</Header>
       <p id="gover-score">{score}</p>
-      {conditionalScoreRender}
+      <div id="gover-message-blur">{conditionalScoreRender}</div>
       <Link to="/">
-        <Button basic circular size="big" color="green" id="gover-buttons">
+        <Button circular size="big" color="green" id="gover-buttons">
           Back To Menu
         </Button>
       </Link>
       <Link to="/game">
-        <Button basic circular size="big" color="green" id="gover-buttons">
+        <Button circular size="big" color="green" id="gover-buttons">
           Play Again
         </Button>
       </Link>
