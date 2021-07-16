@@ -35,7 +35,7 @@ const Home = () => {
 
       <Divider />
 
-      <Link to="/game">
+      <Link to="/gametime">
         <Button basic circular size="large" color="pink" animated>
           <Button.Content icon visible>
             Time Trial Mode
