@@ -11,6 +11,8 @@ import {
 } from "semantic-ui-react";
 import getRandomTestVideo from "../utils/data/test_data";
 import getVideoInfo from "../utils/get_youtube_video_info";
+import correct_audio from "../assets/audio/correct_se.mp3";
+import wrong_audio from "../assets/audio/wrong_se.mp3";
 
 const Game = () => {
   const [leftVidTitle, setLeftVidTitle] = useState("");
@@ -25,6 +27,11 @@ const Game = () => {
   const [result, setResult] = useState("");
   const [visibleResult, setVisibleResult] = useState(false);
   const [dimmerActive, setDimmerActive] = useState(false);
+
+  const correct_se = new Audio(correct_audio);
+  correct_se.volume = 0.2;
+  const wrong_se = new Audio(wrong_audio);
+  wrong_se.volume = 0.2;
 
   // This async function gets two random videos from the database for every new round
   // and updates state values appropriately to update the web page.
@@ -58,19 +65,22 @@ const Game = () => {
       setVisibleResult(true);
       setScore(score + 1);
       setVisibleScore(!visibleScore);
+      correct_se.play();
     }, 1000);
 
     setTimeout(async () => {
       // Load two new videos
+      setDimmerActive(true);
       setIsQuestion(true);
       setVisibleResult(false);
-      setDimmerActive(true);
       await getVideoData();
       setDimmerActive(false);
     }, 2000);
   };
 
-  const OnWrongAnswerSubmit = () => {};
+  const OnWrongAnswerSubmit = () => {
+    wrong_se.play();
+  };
 
   const onAnswerSubmit = (answer) => {
     // answer is either 'more' or 'less'
