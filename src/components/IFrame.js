@@ -5,7 +5,7 @@ const IFrame = ({ videoID, videoTitle }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <Segment compact raised loading={isLoading} id="iframe-segment">
+    <Segment compact inverted loading={isLoading} id="iframe-segment">
       <iframe
         width="512"
         height="288"

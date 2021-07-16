@@ -11,6 +11,7 @@
 
 #vidcard-value {
   color: #b03060;
+  font-family: "Josefin Sans", sans-serif;
 }
 
 #vidcard-title {
@@ -22,12 +23,22 @@
   margin-left: 100px;
 }
 
+#vidcard-button-positive {
+  font-family: "Josefin Sans", sans-serif;
+}
+
+#vidcard-button-negative {
+  font-family: "Josefin Sans", sans-serif;
+}
+
 #vidcard-button-positive:hover {
   background-color: #016936 !important;
   color: white !important;
+  font-family: "Josefin Sans", sans-serif;
 }
 
 #vidcard-button-negative:hover {
   background-color: #b03060 !important;
   color: white !important;
+  font-family: "Josefin Sans", sans-serif;
 }

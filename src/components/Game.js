@@ -60,17 +60,14 @@ const Game = () => {
       setVisibleScore(!visibleScore);
     }, 1000);
 
-    setTimeout(() => {
+    setTimeout(async () => {
       // Load two new videos
       setIsQuestion(true);
       setVisibleResult(false);
       setDimmerActive(true);
-      getVideoData();
-    }, 2000);
-
-    setTimeout(() => {
+      await getVideoData();
       setDimmerActive(false);
-    }, 3000);
+    }, 2000);
   };
 
   const OnWrongAnswerSubmit = () => {};
