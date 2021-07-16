@@ -9,6 +9,7 @@ import {
   Dimmer,
   Loader,
 } from "semantic-ui-react";
+import { Redirect } from "react-router";
 import getRandomTestVideo from "../utils/data/test_data";
 import getVideoInfo from "../utils/get_youtube_video_info";
 import correct_audio from "../assets/audio/correct_se.mp3";
@@ -27,6 +28,7 @@ const Game = () => {
   const [result, setResult] = useState("");
   const [visibleResult, setVisibleResult] = useState(false);
   const [dimmerActive, setDimmerActive] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
 
   const correct_se = new Audio(correct_audio);
   correct_se.volume = 0.2;
@@ -79,7 +81,17 @@ const Game = () => {
   };
 
   const OnWrongAnswerSubmit = () => {
-    wrong_se.play();
+    setIsQuestion(false);
+    // Animation time for view count number
+    setTimeout(() => {
+      setResult("Wrong!");
+      setVisibleResult(true);
+      wrong_se.play();
+    }, 1000);
+
+    setTimeout(() => {
+      setGameOver(true);
+    }, 1500);
   };
 
   const onAnswerSubmit = (answer) => {
@@ -100,6 +112,10 @@ const Game = () => {
       }
     }
   };
+
+  if (gameOver) {
+    return <Redirect to={{ pathname: "/gameover", state: { score: score } }} />;
+  }
 
   return (
     <Container fluid>
@@ -138,7 +154,11 @@ const Game = () => {
         <span id="game-bottom-left-text">Mode: Classic Mode</span>
 
         {visibleResult ? (
-          <span id="game-bottom-center-text">{result}</span>
+          result === "Correct!" ? (
+            <span id="game-bottom-center-text-correct">{result}</span>
+          ) : (
+            <span id="game-bottom-center-text-wrong">{result}</span>
+          )
         ) : null}
 
         <Transition animation="bounce" duration={500} visible={visibleScore}>

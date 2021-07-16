@@ -31,10 +31,16 @@
   float: left;
 }
 
-#game-bottom-center-text {
+#game-bottom-center-text-correct {
   font-weight: bold;
   font-size: 30px;
   color: green;
+}
+
+#game-bottom-center-text-wrong {
+  font-weight: bold;
+  font-size: 30px;
+  color: red;
 }
 
 #game-bottom-right-text {

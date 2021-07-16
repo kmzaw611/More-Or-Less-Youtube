@@ -1,0 +1,22 @@
+#gover-container {
+  padding-top: 100px;
+}
+
+#gover-header {
+  font-size: 40px;
+}
+
+#gover-score {
+  font-size: 80px;
+  color: #b03060;
+  margin: 0px;
+}
+
+#gover-message {
+  font-size: 18px;
+}
+
+#gover-buttons {
+  margin: 20px;
+  font-weight: bold;
+}
