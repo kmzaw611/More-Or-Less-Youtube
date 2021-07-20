@@ -22,5 +22,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# env vars
+# env vars and api keys
 .env
+youtube_api_key.js
+firebase_api_key.js

@@ -166,4 +166,4 @@ googleTrends.push(...movies2018);
 googleTrends.push(...people2018);
 googleTrends.push(...tvshows2018);
 
-export default googleTrends;
+module.exports = googleTrends;

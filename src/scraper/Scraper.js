@@ -27,9 +27,10 @@ This method is heavily based on several of the methods and functions in the util
 I used earlier for developing and testing the frontend.
 */
 
-import googleTrendsList from "../utils/data/google_trends";
-import youtubersList from "../utils/data/youtubers_list";
-import randomWords from "random-words";
+const googleTrendsList = require("./data/google_trends");
+const youtubersList = require("./data/youtubers");
+const randomWords = require("random-words");
+const youtube_search = require("./api/youtube_search");
 
 class Scraper {
   constructor() {
@@ -62,5 +63,41 @@ class Scraper {
 
   // Scrape the Youtube API using the chosen term and return a list of unique IDs
   // not in the Firestore database.
-  scrapeYoutubeAPI() {}
+  async scrapeYoutubeAPI() {
+    // To avoid bias for recent videos, I randomly select a one-year time period
+    // in the last 5 years for doing searches.
+    // index 0 => publishedAfter; index 1 => publishedBefore
+    const publishedDateParams = [
+      ["2021-01-01T00:00:00Z", new Date().toISOString()],
+      ["2020-01-01T00:00:00Z", "2021-01-01T00:00:00Z"],
+      ["2019-01-01T00:00:00Z", "2020-01-01T00:00:00Z"],
+      ["2018-01-01T00:00:00Z", "2019-01-01T00:00:00Z"],
+      ["2017-01-01T00:00:00Z", "2018-01-01T00:00:00Z"],
+      ["2010-01-01T00:00:00Z", "2017-01-01T00:00:00Z"],
+    ];
+
+    const publishedDate =
+      publishedDateParams[
+        Math.floor(Math.random() * publishedDateParams.length)
+      ];
+    const publishedAfter = publishedDate[0];
+    const publishedBefore = publishedDate[1];
+
+    console.log(this.chosen_term);
+    console.log(publishedDate);
+    const { data } = await youtube_search.get("", {
+      params: {
+        q: this.chosen_term,
+        publishedAfter: publishedAfter,
+        publishedBefore: publishedBefore,
+      },
+    });
+
+    data.items.forEach((videoItem) => {
+      console.log(videoItem.id.videoId);
+    });
+  }
 }
+
+const scraper = new Scraper();
+scraper.scrapeYoutubeAPI();

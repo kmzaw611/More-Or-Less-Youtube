@@ -66,4 +66,4 @@ const youtubersList = [
   "Purdue",
 ];
 
-export default youtubersList;
+module.exports = youtubersList;
