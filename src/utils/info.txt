@@ -1,0 +1,7 @@
+The utils folder has several functions and methods that were used while 
+testing and developing the frontend.
+
+It is not actually used in the final build of the frontend.
+
+However, many of the functions and methods I developed here are later used
+for scraping Youtube data and storing them in a database.
