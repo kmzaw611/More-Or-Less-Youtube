@@ -40,52 +40,37 @@ const Game = () => {
   // Dan McGrath's method with generated auto-IDs is what I'm using to get random videos. Source below:
   // https://stackoverflow.com/questions/46798981/firestore-how-to-get-random-documents-in-a-collection
   // Also big thanks to ajzbc's sample code in the same thread.
-  const getTwoRandomVideos = async () => {
+  const getRandomVideo = async () => {
     let videosRef = firestore.collection("videos");
-    let videos = [];
-    while (videos.length < 2) {
-      videos = [];
-      let randomID = videosRef.doc().id;
-      let snapshot = await videosRef
-        .where(firebase.firestore.FieldPath.documentId(), ">=", randomID)
-        .limit(2)
+    let randomID = videosRef.doc().id;
+    let snapshot = await videosRef
+      .where(firebase.firestore.FieldPath.documentId(), ">=", randomID)
+      .limit(1)
+      .get();
+    if (snapshot.size === 0) {
+      snapshot = await videosRef
+        .where(firebase.firestore.FieldPath.documentId(), "<", randomID)
+        .limit(1)
         .get();
-      if (snapshot.size < 2) {
-        snapshot = await videosRef
-          .where(firebase.firestore.FieldPath.documentId(), "<", randomID)
-          .limit(2)
-          .get();
-      }
-
-      // eslint-disable-next-line no-loop-func
-      snapshot.forEach((video) => videos.push(video.data()));
     }
 
-    return videos;
+    let videoData;
+    snapshot.forEach((video) => (videoData = video.data()));
+    console.log(videoData);
+    return videoData;
   };
 
   // This async function gets two random videos from the database for every new round
   // and updates state values appropriately to update the web page.
   const getVideoData = async () => {
-    // await firestore
-    //   .collection("videos")
-    //   .get()
-    //   .then((querySnapshot) => {
-    //     querySnapshot.forEach((video) => {
-    //       console.log(video.data());
-    //     });
-    //   });
+    let firstVid = await getRandomVideo();
+    let secondVid = await getRandomVideo();
 
-    const videos = await getTwoRandomVideos();
-    console.log(videos);
-
-    let firstVid = getRandomTestVideo();
     setLeftVidTitle(firstVid.videoTitle);
     setLeftVidID(firstVid.videoID);
     const firstVidInfo = await getVideoInfo(firstVid.videoID);
     setLeftVidViews(parseInt(firstVidInfo.items[0].statistics.viewCount));
 
-    let secondVid = getRandomTestVideo();
     while (secondVid.videoID === firstVid.videoID)
       secondVid = getRandomTestVideo();
     setRightVidTitle(secondVid.videoTitle);
