@@ -9,7 +9,6 @@
     "axios": "^0.21.1",
     "env-cmd": "^10.1.0",
     "firebase": "^8.7.1",
-    "firebase-admin": "^9.11.0",
     "random-words": "^1.1.1",
     "react": "^17.0.2",
     "react-countup": "^4.4.0",

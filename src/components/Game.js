@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
+import firebase from "firebase/app";
 import firestore from "./Firestore";
-import * as admin from "firebase-admin";
 import VideoCard from "./VideoCard";
 import {
   Grid,
@@ -40,7 +40,29 @@ const Game = () => {
   // Dan McGrath's method with generated auto-IDs is what I'm using to get random videos. Source below:
   // https://stackoverflow.com/questions/46798981/firestore-how-to-get-random-documents-in-a-collection
   // Also big thanks to ajzbc's sample code in the same thread.
-  const getRandomVideo = () => {};
+  const getTwoRandomVideos = async () => {
+    let videosRef = firestore.collection("videos");
+    let videos = [];
+    while (videos.length < 2) {
+      videos = [];
+      let randomID = videosRef.doc().id;
+      let snapshot = await videosRef
+        .where(firebase.firestore.FieldPath.documentId(), ">=", randomID)
+        .limit(2)
+        .get();
+      if (snapshot.size < 2) {
+        snapshot = await videosRef
+          .where(firebase.firestore.FieldPath.documentId(), "<", randomID)
+          .limit(2)
+          .get();
+      }
+
+      // eslint-disable-next-line no-loop-func
+      snapshot.forEach((video) => videos.push(video.data()));
+    }
+
+    return videos;
+  };
 
   // This async function gets two random videos from the database for every new round
   // and updates state values appropriately to update the web page.
@@ -53,6 +75,9 @@ const Game = () => {
     //       console.log(video.data());
     //     });
     //   });
+
+    const videos = await getTwoRandomVideos();
+    console.log(videos);
 
     let firstVid = getRandomTestVideo();
     setLeftVidTitle(firstVid.videoTitle);
