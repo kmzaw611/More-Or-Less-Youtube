@@ -63,6 +63,7 @@ const Game = () => {
   // This async function gets two random videos from the database for every new round
   // and updates state values appropriately to update the web page.
   const getVideoData = async () => {
+    setDimmerActive(true);
     let firstVid = await getRandomVideo();
     let secondVid = await getRandomVideo();
 
@@ -77,12 +78,14 @@ const Game = () => {
     setRightVidID(secondVid.videoID);
     const secondVidInfo = await getVideoInfo(secondVid.videoID);
     setRightVidViews(parseInt(secondVidInfo.items[0].statistics.viewCount));
+    setDimmerActive(false);
   };
 
   useEffect(() => {
     // Called when the component first mounts.
     // Loads the first two videos.
     getVideoData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const OnCorrectAnswerSubmit = async () => {
@@ -98,11 +101,9 @@ const Game = () => {
 
     setTimeout(async () => {
       // Load two new videos
-      setDimmerActive(true);
       setIsQuestion(true);
       setVisibleResult(false);
       await getVideoData();
-      setDimmerActive(false);
     }, 2000);
   };
 
@@ -117,7 +118,7 @@ const Game = () => {
 
     setTimeout(() => {
       setGameOver(true);
-    }, 1500);
+    }, 2000);
   };
 
   const onAnswerSubmit = (answer) => {
