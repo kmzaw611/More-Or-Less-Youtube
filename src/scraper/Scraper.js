@@ -9,17 +9,58 @@ METHOD
 -------
 3 ways to scrape for random videos:
 (1) Using Google Trends for the past 3 years (2018-2020).
-(2) Using a list of top-50 most subscribed youtubers.
+(2) Using a list of top-50 most subscribed youtubers with some personal additions.
 (3) Using random word generation.
 
 To stay within daily API quota limit, running the scraper program will only do:
-(1) 50 searches (5000 Units)
-(2) Look up video info for each search result (25 x 50 = 1250 units)
+(1) 75 searches (7500 Units)
+(2) Look up video info for each search result (25 x 75 = 1875 units)
 (3) Check whether each video is already stored in the Firestore
 (4) Only scrape and add the video if it's unique
+
+This will scrape 1875 videos each day (if there are no duplicates), while staying
+under Google's API limit. Check out src/scraper/script.js for the implementation.
 
 MISC
 -----
 This method is heavily based on several of the methods and functions in the utils folder, which
 I used earlier for developing and testing the frontend.
 */
+
+import googleTrendsList from "../utils/data/google_trends";
+import youtubersList from "../utils/data/youtubers_list";
+import randomWords from "random-words";
+
+class Scraper {
+  constructor() {
+    this.google_trend_term =
+      googleTrendsList[Math.floor(Math.random() * googleTrendsList.length)];
+    this.youtuber_term =
+      youtubersList[Math.floor(Math.random() * googleTrendsList.length)];
+    this.random_word = this.generateRandomWord();
+    this.chosen_term = this.chooseTerm();
+  }
+
+  generateRandomWord() {
+    const word = randomWords();
+    return word;
+  }
+
+  chooseTerm() {
+    let roll = Math.floor(Math.random() * 3);
+    switch (roll) {
+      case 0:
+        return this.google_trend_term;
+      case 1:
+        return this.youtuber_term;
+      case 2:
+        return this.random_word;
+      default:
+      // Something is very wrong here
+    }
+  }
+
+  // Scrape the Youtube API using the chosen term and return a list of unique IDs
+  // not in the Firestore database.
+  scrapeYoutubeAPI() {}
+}

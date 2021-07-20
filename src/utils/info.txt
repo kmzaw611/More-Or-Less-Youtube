@@ -3,5 +3,7 @@ testing and developing the frontend.
 
 It is not actually used in the final build of the frontend.
 
-However, many of the functions and methods I developed here are later used
+However, many of the functions and datasets I developed here are later used
 for scraping Youtube data and storing them in a database.
+
+Check src/scraper for the code.
