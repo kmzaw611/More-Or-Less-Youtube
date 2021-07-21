@@ -53,7 +53,12 @@ const Home = () => {
         <Label basic color="red" pointing="right">
           Source Code
         </Label>
-        <Button as="a" color="red">
+        <Button
+          as="a"
+          color="red"
+          href="https://github.com/KyleKMZ/More-Or-Less-Youtube"
+          target="_blank"
+        >
           <Icon name="github" />
           GitHub
         </Button>
