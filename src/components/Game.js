@@ -58,7 +58,6 @@ const Game = () => {
 
     let videoData;
     snapshot.forEach((video) => (videoData = video.data()));
-    console.log(videoData);
     return videoData;
   };
 

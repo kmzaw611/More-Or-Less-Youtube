@@ -7,7 +7,7 @@ const GameOver = (props) => {
   let bgClass;
   let score = props.location.state.score || 0;
 
-  if (score < 5) {
+  if (score <= 5) {
     conditionalScoreRender = (
       <Message id="gover-message">
         That's not a very good score...was this too hard? Maybe give it another
@@ -15,7 +15,7 @@ const GameOver = (props) => {
       </Message>
     );
     bgClass = "gover-bg-bad";
-  } else if (score > 5 && score < 10) {
+  } else if (score > 5 && score <= 10) {
     conditionalScoreRender = (
       <Message id="gover-message">
         That was a pretty good attempt. Perhaps you could do better. Make the
