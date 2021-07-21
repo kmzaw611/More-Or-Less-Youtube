@@ -23,3 +23,9 @@ Use either Docker or npm afterwards.
 `npm start`
 
 Then go to your browser at https://localhost:3000.
+
+## Implementation
+
+React with Semantic UI is used to develop the frontend. A serverless solution with Firebase was implemented to store and retrieve Youtube videos from a database.
+
+A large amount of Youtube videos were scraped and stored in the Firestore database using a method I developed. Please see src/scraper/Scraper.js for a detailed explanation on how it works.
