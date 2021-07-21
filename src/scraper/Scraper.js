@@ -31,6 +31,7 @@ const googleTrendsList = require("./data/google_trends");
 const youtubersList = require("./data/youtubers");
 const randomWords = require("random-words");
 const youtube_search = require("./api/youtube_search");
+const firestore = require("./api/firestore");
 
 class Scraper {
   constructor() {
@@ -40,6 +41,7 @@ class Scraper {
       youtubersList[Math.floor(Math.random() * googleTrendsList.length)];
     this.random_word = this.generateRandomWord();
     this.chosen_term = this.chooseTerm();
+    this.firestore_db = firestore;
   }
 
   generateRandomWord() {
@@ -83,19 +85,19 @@ class Scraper {
     const publishedAfter = publishedDate[0];
     const publishedBefore = publishedDate[1];
 
-    console.log(this.chosen_term);
-    console.log(publishedDate);
-    const { data } = await youtube_search.get("", {
-      params: {
-        q: this.chosen_term,
-        publishedAfter: publishedAfter,
-        publishedBefore: publishedBefore,
-      },
-    });
+    // const { data } = await youtube_search.get("", {
+    //   params: {
+    //     q: this.chosen_term,
+    //     publishedAfter: publishedAfter,
+    //     publishedBefore: publishedBefore,
+    //   },
+    // });
+    // const videoIDs = [];
+    // data.items.forEach((videoItem) => {
+    //   videoIDs.push(videoItem.id.videoId);
+    // });
 
-    data.items.forEach((videoItem) => {
-      console.log(videoItem.id.videoId);
-    });
+    const videosRef = firestore.collection("videos");
   }
 }
 
