@@ -39,7 +39,7 @@ class Scraper {
     this.google_trend_term =
       googleTrendsList[Math.floor(Math.random() * googleTrendsList.length)];
     this.youtuber_term =
-      youtubersList[Math.floor(Math.random() * googleTrendsList.length)];
+      youtubersList[Math.floor(Math.random() * youtubersList.length)];
     this.random_word = this.generateRandomWord();
     this.chosen_term = this.chooseTerm();
     this.firestore_db = firestore;
