@@ -60,7 +60,8 @@ class Scraper {
       case 2:
         return this.random_word;
       default:
-      // Something is very wrong here
+        // Something is very wrong here
+        console.log("Something is very wrong here!");
     }
   }
 
@@ -117,7 +118,7 @@ class Scraper {
     const videosRef = firestore.collection("videos");
     for (const videoID of videoIDs) {
       const videoInfo = await this.getVideoInfo(videoID);
-      videosRef.doc(videoID).set({
+      videosRef.add({
         videoID,
         videoChannel: videoInfo.items[0].snippet.channelTitle,
         videoTitle: videoInfo.items[0].snippet.title,
