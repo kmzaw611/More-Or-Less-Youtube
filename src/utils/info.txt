@@ -1,7 +1,8 @@
 The utils folder has several functions and methods that were used while 
 testing and developing the frontend.
 
-It is not actually used in the final build of the frontend.
+It is not actually used in the final build of the frontend, except for some
+Axios API objects for Youtube.
 
 However, many of the functions and datasets I developed here are later used
 for scraping Youtube data and storing them in a database.

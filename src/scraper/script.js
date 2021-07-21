@@ -8,6 +8,7 @@ while (searchIter <= searchCount) {
   console.log("Scraping Operation No." + searchIter);
   console.log("-------------------------");
   console.log(`Scraping Term: '${scraper.getChosenTerm()}'`);
+  console.log();
   scraper.scrapeYoutubeAPI();
 
   searchIter++;

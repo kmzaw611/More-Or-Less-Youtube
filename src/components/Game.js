@@ -12,16 +12,18 @@ import {
   Loader,
 } from "semantic-ui-react";
 import { Redirect } from "react-router";
-import getRandomTestVideo from "../utils/data/test_data";
+import shorten_title from "../utils/shorten_title";
 import getVideoInfo from "../utils/get_youtube_video_info";
 import correct_audio from "../assets/audio/correct_se.mp3";
 import wrong_audio from "../assets/audio/wrong_se.mp3";
 
 const Game = () => {
   const [leftVidTitle, setLeftVidTitle] = useState("");
+  const [leftVidChannel, setLeftVidChannel] = useState("");
   const [leftVidViews, setLeftVidViews] = useState(0);
   const [leftVidID, setLeftVidID] = useState("");
   const [rightVidTitle, setRightVidTitle] = useState("");
+  const [rightVidChannel, setRightVidChannel] = useState("");
   const [rightVidViews, setRightVidViews] = useState(0);
   const [rightVidID, setRightVidID] = useState("");
   const [isQuestion, setIsQuestion] = useState(true);
@@ -67,14 +69,13 @@ const Game = () => {
     let firstVid = await getRandomVideo();
     let secondVid = await getRandomVideo();
 
-    setLeftVidTitle(firstVid.videoTitle);
+    setLeftVidTitle(shorten_title(firstVid.videoTitle));
     setLeftVidID(firstVid.videoID);
     const firstVidInfo = await getVideoInfo(firstVid.videoID);
     setLeftVidViews(parseInt(firstVidInfo.items[0].statistics.viewCount));
 
-    while (secondVid.videoID === firstVid.videoID)
-      secondVid = getRandomTestVideo();
-    setRightVidTitle(secondVid.videoTitle);
+    while (secondVid.videoID === firstVid.videoID) secondVid = getRandomVideo();
+    setRightVidTitle(shorten_title(secondVid.videoTitle));
     setRightVidID(secondVid.videoID);
     const secondVidInfo = await getVideoInfo(secondVid.videoID);
     setRightVidViews(parseInt(secondVidInfo.items[0].statistics.viewCount));
@@ -156,6 +157,7 @@ const Game = () => {
             <Grid.Column>
               <VideoCard
                 videoTitle={leftVidTitle}
+                videoChannel={leftVidChannel}
                 videoID={leftVidID}
                 videoViews={leftVidViews}
                 isQuestion={false}
@@ -164,6 +166,7 @@ const Game = () => {
             <Grid.Column>
               <VideoCard
                 videoTitle={rightVidTitle}
+                videoChannel={rightVidChannel}
                 videoID={rightVidID}
                 videoViews={rightVidViews}
                 isQuestion={isQuestion}
