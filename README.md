@@ -14,12 +14,12 @@ Clone the repo: `git clone https://github.com/KyleKMZ/ More-Or-Less-Youtube`
 
 Use either Docker or npm afterwards.
 
-`docker build -t moreorless:latest .`
+`docker build -t moreorless:latest .`\
 `docker run --name moreorless -d -p 3000:3000 moreorless:latest`
 
 ### or
 
-`npm install`
+`npm install`\
 `npm start`
 
 Then go to your browser at https://localhost:3000.
