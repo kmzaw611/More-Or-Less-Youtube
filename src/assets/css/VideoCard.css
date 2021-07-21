@@ -17,6 +17,12 @@
 
 #vidcard-title {
   font-family: Lato light;
+  margin-bottom: 0px;
+}
+
+#vidcard-channel {
+  margin-top: 0px;
+  font-family: Lato;
 }
 
 #vidcard-buttons {

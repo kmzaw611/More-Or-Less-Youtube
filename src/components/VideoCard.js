@@ -11,6 +11,7 @@ import IFrame from "./IFrame";
 
 const VideoCard = ({
   videoTitle,
+  videoChannel,
   videoID,
   videoViews,
   isQuestion,
@@ -68,6 +69,9 @@ const VideoCard = ({
     <Container textAlign="center">
       <Header as="h2" id="vidcard-title">
         {videoTitle}
+      </Header>
+      <Header as="h4" id="vidcard-channel">
+        {videoChannel}
       </Header>
 
       <IFrame videoID={videoID} videoTitle={videoTitle} />

@@ -71,12 +71,14 @@ const Game = () => {
 
     setLeftVidTitle(shorten_title(firstVid.videoTitle));
     setLeftVidID(firstVid.videoID);
+    setLeftVidChannel(firstVid.videoChannel);
     const firstVidInfo = await getVideoInfo(firstVid.videoID);
     setLeftVidViews(parseInt(firstVidInfo.items[0].statistics.viewCount));
 
     while (secondVid.videoID === firstVid.videoID) secondVid = getRandomVideo();
     setRightVidTitle(shorten_title(secondVid.videoTitle));
     setRightVidID(secondVid.videoID);
+    setRightVidChannel(secondVid.videoChannel);
     const secondVidInfo = await getVideoInfo(secondVid.videoID);
     setRightVidViews(parseInt(secondVidInfo.items[0].statistics.viewCount));
     setDimmerActive(false);
