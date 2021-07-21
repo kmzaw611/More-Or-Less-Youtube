@@ -31,6 +31,7 @@ const googleTrendsList = require("./data/google_trends");
 const youtubersList = require("./data/youtubers");
 const randomWords = require("random-words");
 const youtube_search = require("./api/youtube_search");
+const youtube_video_info = require("./api/youtube_video_info");
 const firestore = require("./api/firestore");
 
 class Scraper {
@@ -63,6 +64,20 @@ class Scraper {
     }
   }
 
+  getChosenTerm() {
+    return this.chosen_term;
+  }
+
+  async getVideoInfo(videoID) {
+    const { data } = await youtube_video_info.get("", {
+      params: {
+        id: videoID,
+      },
+    });
+
+    return data;
+  }
+
   // Scrape the Youtube API using the chosen term and return a list of unique IDs
   // not in the Firestore database.
   async scrapeYoutubeAPI() {
@@ -85,21 +100,30 @@ class Scraper {
     const publishedAfter = publishedDate[0];
     const publishedBefore = publishedDate[1];
 
-    // const { data } = await youtube_search.get("", {
-    //   params: {
-    //     q: this.chosen_term,
-    //     publishedAfter: publishedAfter,
-    //     publishedBefore: publishedBefore,
-    //   },
-    // });
-    // const videoIDs = [];
-    // data.items.forEach((videoItem) => {
-    //   videoIDs.push(videoItem.id.videoId);
-    // });
+    // Search Youtube using the API and get a list of videoIDs
+    const { data } = await youtube_search.get("", {
+      params: {
+        q: this.chosen_term,
+        publishedAfter: publishedAfter,
+        publishedBefore: publishedBefore,
+      },
+    });
+    const videoIDs = [];
+    data.items.forEach((videoItem) => {
+      videoIDs.push(videoItem.id.videoId);
+    });
 
+    // Scrape each videoID's information and store them in Firestore
     const videosRef = firestore.collection("videos");
+    for (const videoID of videoIDs) {
+      const videoInfo = await this.getVideoInfo(videoID);
+      videosRef.doc(videoID).set({
+        videoID,
+        videoChannel: videoInfo.items[0].snippet.channelTitle,
+        videoTitle: videoInfo.items[0].snippet.title,
+      });
+    }
   }
 }
 
-const scraper = new Scraper();
-scraper.scrapeYoutubeAPI();
+module.exports = Scraper;
