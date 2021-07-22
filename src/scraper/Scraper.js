@@ -89,10 +89,16 @@ class Scraper {
       .get();
 
     if (!duplicateSnapshot.empty) {
-      console.log("Duplicate!");
+      console.log("Duplicate => ", videoID);
       return;
     } else {
       const videoInfo = await this.getVideoInfo(videoID);
+      console.log(
+        "Scraping => " +
+          videoID +
+          "; Title => " +
+          videoInfo.items[0].snippet.title
+      );
       videosRef.add({
         videoID,
         videoChannel: videoInfo.items[0].snippet.channelTitle,
