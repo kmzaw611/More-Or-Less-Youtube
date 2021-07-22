@@ -79,6 +79,28 @@ class Scraper {
     return data;
   }
 
+  async addToFirestore(videoID) {
+    // Scrape each videoID's information and store them in Firestore.
+    // First check if videoID to add is unique; add only if it is.
+
+    const videosRef = firestore.collection("videos");
+    const duplicateSnapshot = await videosRef
+      .where("videoID", "==", videoID)
+      .get();
+
+    if (!duplicateSnapshot.empty) {
+      console.log("Duplicate!");
+      return;
+    } else {
+      const videoInfo = await this.getVideoInfo(videoID);
+      videosRef.add({
+        videoID,
+        videoChannel: videoInfo.items[0].snippet.channelTitle,
+        videoTitle: videoInfo.items[0].snippet.title,
+      });
+    }
+  }
+
   // Scrape the Youtube API using the chosen term and return a list of unique IDs
   // not in the Firestore database.
   async scrapeYoutubeAPI() {
@@ -114,15 +136,8 @@ class Scraper {
       videoIDs.push(videoItem.id.videoId);
     });
 
-    // Scrape each videoID's information and store them in Firestore
-    const videosRef = firestore.collection("videos");
     for (const videoID of videoIDs) {
-      const videoInfo = await this.getVideoInfo(videoID);
-      videosRef.add({
-        videoID,
-        videoChannel: videoInfo.items[0].snippet.channelTitle,
-        videoTitle: videoInfo.items[0].snippet.title,
-      });
+      await this.addToFirestore(videoID);
     }
   }
 }
