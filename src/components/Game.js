@@ -18,12 +18,18 @@ import correct_audio from "../assets/audio/correct_se.mp3";
 import wrong_audio from "../assets/audio/wrong_se.mp3";
 
 const Game = () => {
-  const [leftVidTitle, setLeftVidTitle] = useState("");
-  const [leftVidChannel, setLeftVidChannel] = useState("");
+  // The '*'s are placeholders until the title and channel name loads.
+  // Otherwise, the IFrames move awkwardly if internet is slow.
+  const [leftVidTitle, setLeftVidTitle] = useState(
+    "******************************"
+  );
+  const [leftVidChannel, setLeftVidChannel] = useState("**********");
   const [leftVidViews, setLeftVidViews] = useState(0);
   const [leftVidID, setLeftVidID] = useState("");
-  const [rightVidTitle, setRightVidTitle] = useState("");
-  const [rightVidChannel, setRightVidChannel] = useState("");
+  const [rightVidTitle, setRightVidTitle] = useState(
+    "******************************"
+  );
+  const [rightVidChannel, setRightVidChannel] = useState("**********");
   const [rightVidViews, setRightVidViews] = useState(0);
   const [rightVidID, setRightVidID] = useState("");
   const [isQuestion, setIsQuestion] = useState(true);
