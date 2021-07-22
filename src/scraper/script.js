@@ -22,3 +22,6 @@ const scrapVideos = async () => {
 };
 
 scrapVideos();
+
+// console.log('Number Of Videos:')
+// new Scraper().getNumOfVideos();

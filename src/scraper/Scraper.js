@@ -146,6 +146,12 @@ class Scraper {
       await this.addToFirestore(videoID);
     }
   }
+
+  async getNumOfVideos() {
+    const videosRef = firestore.collection("videos");
+    const snapshot = await videosRef.get();
+    console.log(snapshot.size);
+  }
 }
 
 module.exports = Scraper;
