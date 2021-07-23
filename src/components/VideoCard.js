@@ -41,25 +41,26 @@ const VideoCard = ({
   } else {
     conditionalRender = (
       <div id="vidcard-buttons">
-        <Button.Group fluid size="huge">
-          <Button
-            onClick={() => onAnswerSubmit("more")}
-            id="vidcard-button-positive"
-            basic
-            positive
-          >
-            More
-          </Button>
-          <Button.Or />
-          <Button
-            onClick={() => onAnswerSubmit("less")}
-            id="vidcard-button-negative"
-            basic
-            negative
-          >
-            Less
-          </Button>
-        </Button.Group>
+        <Button
+          onClick={() => onAnswerSubmit("more")}
+          id="vidcard-button-positive"
+          basic
+          compact
+          size="big"
+          color="red"
+        >
+          More
+        </Button>
+        <Button
+          onClick={() => onAnswerSubmit("less")}
+          id="vidcard-button-negative"
+          basic
+          compact
+          size="big"
+          color="red"
+        >
+          Less
+        </Button>
         <h4 id="vidcard-text">VIEWS</h4>
       </div>
     );
@@ -76,7 +77,7 @@ const VideoCard = ({
 
       <IFrame videoID={videoID} videoTitle={videoTitle} />
 
-      <Segment raised>
+      <Segment id="vidcard-segment" raised>
         <h3 id="vidcard-text">This video has</h3>
         {conditionalRender}
       </Segment>

@@ -1,3 +1,7 @@
+#vidcard-segment {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
 #vidcard-viewcount {
   margin-top: 0px;
 }
@@ -31,21 +35,34 @@
 }
 
 #vidcard-button-positive {
-  font-family: "Josefin Sans", sans-serif;
+  font-family: "Public Sans", sans-serif;
+  font-weight: 700;
+  border-radius: 10%;
+  margin-right: 10px;
+  margin-top: 7px;
+  margin-bottom: 7px;
 }
 
 #vidcard-button-negative {
-  font-family: "Josefin Sans", sans-serif;
+  font-family: "Public Sans", sans-serif;
+  font-weight: 700;
+
+  border-radius: 10%;
+  margin-left: 10px;
+  margin-top: 7px;
+  margin-bottom: 7px;
 }
 
 #vidcard-button-positive:hover {
-  background-color: #016936 !important;
+  background-color: #b03060 !important;
   color: white !important;
-  font-family: "Josefin Sans", sans-serif;
+  font-family: "Public Sans", sans-serif;
+  font-weight: 700;
 }
 
 #vidcard-button-negative:hover {
   background-color: #b03060 !important;
   color: white !important;
-  font-family: "Josefin Sans", sans-serif;
+  font-family: "Public Sans", sans-serif;
+  font-weight: 700;
 }

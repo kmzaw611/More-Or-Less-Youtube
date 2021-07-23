@@ -6,6 +6,7 @@
   align-items: center;
   background-image: url("../images/background-1.jpg") !important;
   background-size: cover !important;
+  border-radius: 0px;
 }
 
 #game-vs {
