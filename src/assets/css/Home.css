@@ -1,12 +1,21 @@
 #home-container {
+  height: 100vh;
   padding-top: 50px;
 }
 
 #home-header {
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   font-family: "Zen Loop";
 }
 
+#home-button-mail {
+  margin-top: 60px;
+}
+
+#home-button-website {
+  margin-top: 60px;
+}
+
 #home-github {
-  margin-top: 50px;
+  margin-top: 10px;
 }

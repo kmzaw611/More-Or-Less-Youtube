@@ -49,6 +49,33 @@ const Home = () => {
 
       <Divider />
 
+      <Button
+        as="a"
+        href="mailto:kaungmyatzaw611@gmail.com"
+        color="pink"
+        size="small"
+        compact
+        circular
+        basic
+        id="home-button-mail"
+      >
+        <Icon name="mail" /> Email: kaungmyatzaw611@gmail.com
+      </Button>
+      <Button
+        as="a"
+        href="https://mypersonalwebsite.com"
+        target="_blank"
+        color="pink"
+        size="small"
+        compact
+        circular
+        basic
+        id="home-button-website"
+      >
+        <Icon name="chrome" /> Website: mypersonalwebsite.com
+      </Button>
+      <br />
+
       <Button as="div" labelPosition="left" id="home-github">
         <Label basic color="red" pointing="right">
           Source Code
