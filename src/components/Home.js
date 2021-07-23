@@ -61,19 +61,6 @@ const Home = () => {
       >
         <Icon name="mail" /> Email: kaungmyatzaw611@gmail.com
       </Button>
-      <Button
-        as="a"
-        href="https://mypersonalwebsite.com"
-        target="_blank"
-        color="pink"
-        size="small"
-        compact
-        circular
-        basic
-        id="home-button-website"
-      >
-        <Icon name="chrome" /> Website: mypersonalwebsite.com
-      </Button>
       <br />
 
       <Button as="div" labelPosition="left" id="home-github">
