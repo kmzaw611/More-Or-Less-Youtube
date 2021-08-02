@@ -10,7 +10,7 @@ You can try it out here at: https://www.moreorlessyoutube.com
 
 If you would like to try it out locally,
 
-Clone the repo: `git clone https://github.com/KyleKMZ/ More-Or-Less-Youtube`
+Clone the repo: `https://github.com/kmzaw611/More-Or-Less-Youtube`
 
 Use either npm or Docker afterwards.
 
