@@ -70,7 +70,7 @@ const Home = () => {
         <Button
           as="a"
           color="red"
-          href="https://github.com/KyleKMZ/More-Or-Less-Youtube"
+          href="https://github.com/kmzaw611/More-Or-Less-Youtube"
           target="_blank"
         >
           <Icon name="github" />
