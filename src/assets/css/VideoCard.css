@@ -9,7 +9,7 @@
 #vidcard-text {
   font-family: "Public Sans", sans-serif;
   font-weight: 200;
-  font-size: 17px;
+  font-size: 1.25em;
   margin-top: 10px;
 }
 
@@ -20,7 +20,9 @@
 }
 
 #vidcard-title {
-  font-family: Lato light;
+  font-size: 2em;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
   margin-bottom: 0px;
 }
 

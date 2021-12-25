@@ -1,6 +1,6 @@
 /* Aggregates all my CSS files for a convenient one-line import in my React app. */
 
-@import "Fonts.css";
+@import "fonts.css";
 @import "Game.css";
 @import "Home.css";
 @import "VideoCard.css";
