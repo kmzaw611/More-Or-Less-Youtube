@@ -1,5 +1,5 @@
 const firebase = require("firebase/app");
-const firebaseApiKey = process.env.REACT_APP_FIREBASE_API_KEY;
+const firebaseApiKey = require("./firebase_api_key");
 require("firebase/firestore");
 
 const firebaseConfig = {
