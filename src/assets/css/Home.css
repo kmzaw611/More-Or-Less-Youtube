@@ -10,7 +10,8 @@
 }
 
 #home-button-mail {
-  margin-top: 2em;
+  margin-top: 4em;
+  margin-bottom: 0.5em;
 }
 
 #home-button-website {
@@ -18,5 +19,6 @@
 }
 
 #home-github {
-  margin-top: 2em;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
 }

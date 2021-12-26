@@ -22,27 +22,13 @@ const Home = () => {
       </Header>
 
       <Link to="/game">
-        <Button basic circular size="large" color="pink" animated>
+        <Button basic circular size="huge" color="pink" animated>
           <Button.Content icon visible>
-            Classic Mode
+            PLAY
             <Icon name="angle double right" />
           </Button.Content>
           <Button.Content icon hidden centered>
             <Icon name="play" />
-          </Button.Content>
-        </Button>
-      </Link>
-
-      <Divider />
-
-      <Link to="/gametime">
-        <Button basic circular size="large" color="pink" animated>
-          <Button.Content icon visible>
-            Time Trial Mode
-            <Icon name="angle double right" />
-          </Button.Content>
-          <Button.Content icon hidden centered>
-            <Icon name="clock" />
           </Button.Content>
         </Button>
       </Link>
